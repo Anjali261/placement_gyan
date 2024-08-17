@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="col-sm-12 " style="margin-top: 5%;">
+      <h6 class="display-4 text-center">Articles To Be Reviewed</h6>
+  </div>
+
+  <form  [formGroup]="articlesForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+
+      <div class="col-sm-10 mt-3">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Company Name</span>
+          </div>
+          <input type="text" (keyup)="articleSearched.next($event)" class="form-control"
+          formControlName="user_name" placeholder="Search for Articles" aria-describedby="inputGroup-sizing-default">
+        </div>
+     </div>
+
+    </div>
+  </form>
+
+    <div *ngIf="arrayList.length" class= "count">
+      <p *ngIf="arrayList.length==1">{{arrayList.length}} Article Fetched</p>
+      <p *ngIf="arrayList.length>1">{{arrayList.length}} Articles Fetched</p>
+    </div>
+
+      <div *ngIf = "isLoading">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <h2>Error Occurred!</h2>
+        <p>
+          {{errorMessage}}
+        </p>
+      </div>
+</div>
+<div *ngIf="arrayList.length" class="container">
+<table class="table" >
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Sno</th>
+      <th scope="col"><a class="link text-light "> User Name </a></th>
+      <th scope="col"><a class="link text-light fa fa-sort" > Title </a></th>
+      <th scope="col"><a class="link text-light fa fa-sort"> Company </a></th>
+      <th scope="col"><a class="link text-light fa fa-sort" > Date</a></th>
+      <th scope="col"><a class="link text-light fa fa-sort" > Action</a></th>
+      <!-- <th scope="col"><a class="link text-light fa fa-sort" > Topic</a></th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of arrayList ; let i = index">
+
+      <zak-modal id={{item._id}} >
+        <button class="btn btn-danger mx-2  "  (click)="rejectReview(item._id)" >Reject</button>
+        <button class="btn btn-success mx-2  " (click)="acceptReview(item._id)" >Approve</button>
+
+        <div class="row">
+          <div class="taggedProblems" *ngIf= "item.problems.length>0">
+                  <div class="" *ngFor="let problems of item.problems; let i = index">
+                      <a href="{{problems.problem_view_link}}" target ='_blank' class =  "btn btn-outline-warning"> {{problems.problem_name}}</a>
+                  </div>
+          </div>
+      </div>
+
+        <div class="ql-container ql-snow" style="border-width: 0;">
+          <div class="ql-editor"  [innerHTML]="item.content">
+          </div>
+        </div>
+      </zak-modal>
+      <th >{{ i+1}}</th>
+      <td>{{item.userId.userName}}</td>
+      <!-- <td><a href={{item.problem_view_link}} target="_blank">{{item.problem_name}}</a></td> -->
+      <td>{{item.title}}</td>
+      <td>{{item.company}}</td>
+      <td>{{item.date}}</td>
+      <td><a href="javascript:void(0)" (click)="modalService.open(item._id)">View Article</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+</div>

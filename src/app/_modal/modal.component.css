@@ -1,0 +1,62 @@
+﻿/* MODAL STYLES
+-------------------------------*/
+zak-modal {
+    /* modals are hidden by default */
+    display: none;
+    }
+
+    .zak-modal {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      padding: 18px;
+      margin-top:5%;
+      /* enables scrolling for tall modals */
+}
+
+@media screen and (min-width: 640px) {
+	.zak-modal {
+		padding: 15px;
+	}
+}
+
+.zak-modal-background {
+  /* modal background fixed across whole screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* semi-transparent black  */
+  background-color: #000;
+  opacity: 0.75;
+
+  /* z-index must be below .zak-modal and above everything else  */
+  z-index: 0.8;
+}
+
+.zak-modal-body {
+  padding: 10px 20px;
+	background: #fff;
+	margin-left:auto;
+	margin-right:auto;
+	max-width:960px;
+	max-height: 650px;
+	overflow-y: scroll;
+
+  /* margin exposes part of the modal background */
+  /* margin: 40px; */
+}
+
+body.zak-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}

@@ -1,0 +1,123 @@
+<div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- meta -->
+          <div class="profile-user-box card-box bg-custom">
+            <div class="row">
+              <div class="col-sm-6"><span class="float-left mr-3"><img src={{profilePictureUrl}} alt=""
+                    class="thumb-lg rounded-circle"></span>
+                <div class="media-body text-white">
+                  <p class="font-13 text-light">Amazing Coder</p>
+                  <!-- <p class="text-light mb-0">Country</p> -->
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <!-- <div class="text-right">
+                  <button type="button" class="btn btn-info waves-effect" (click)=detailpage()><i
+                      class="mdi mdi-account-settings-variant mr-1"></i>Edit Your Profile</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <!--/ meta -->
+        </div>
+      </div>
+    </div>
+
+<div class="container ">
+    <div class="display-4 text-center " >{{userName}}</div>
+
+
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-12 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Name</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+            </div>
+
+            <div class="col-sm-7 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Email</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="email">
+                </div>
+            </div>
+
+            <div class="col-sm-5 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Contact Number</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="phone_number" min="1">
+                </div>
+            </div>
+
+            <div class="col-sm-6 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">LinkedIn Handle</span>
+                    </div>
+                    <input class="form-control" formControlName="linkedin_user_handle" type="text">
+                </div>
+            </div>
+
+            <div class="col-sm-6 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">GitHub Handle</span>
+                    </div>
+                    <input class="form-control" formControlName="github_user_handle" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Facebook Handle</span>
+                    </div>
+                    <input class="form-control" formControlName="facebook_user_handle" type="text">
+                </div>
+            </div>
+            <div class="col-sm-6 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Insta Handle</span>
+                    </div>
+                    <input class="form-control" formControlName="insta_user_handle" type="text">
+                </div>
+            </div>
+
+            <div class="col-sm-7 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Twitter Handle</span>
+                    </div>
+                    <input class="form-control" formControlName="twitter_user_handle" type="text">
+                </div>
+            </div>
+
+            <div class="col-sm-5 mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Preferred Coding Language </span>
+                    </div>
+                    <select class="form-control" formControlName="most_comfortable_coding_language">
+                        <option *ngFor="let op of language" [value]="op">
+                            {{ op}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="float-right btn btn-outline-dark pull-right mt-3 shadow" [disabled]="!updateForm.valid">Update
+            Details</button>
+
+    </form>
+
+</div>

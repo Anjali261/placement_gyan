@@ -1,0 +1,23 @@
+body{
+    font-family: "Lato",sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height:1.7;
+    color:#777;
+    padding:30px;
+    padding-top:3.5rem;
+    position: relative;
+    background-size: cover;
+
+    background-image:linear-gradient(
+        to bottom ,
+        hsla(120, 17%, 85%, 0.301),
+        hsla(0, 0%, 99%, 0.101));
+    background-repeat:no-repeat;
+}
+
+// #main {
+//     position: relative;
+//     background-size:100% 100%;
+//  }
+

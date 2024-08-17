@@ -1,0 +1,135 @@
+
+<div class="container">
+    <div class="  row" style="margin-bottom: 20px;" >
+
+        <div class="col-sm-4" >
+            <input class="col-sm-12" (keyup)="articleTitleSearched.next($event)" type="text" placeholder="Search...">
+        </div>
+
+        <div class="col-sm-4" >
+
+            <ng-multiselect-dropdown [placeholder]="'Site'" [settings]="dropdownSettings" [data]="all_company"
+              [(ngModel)]="selected_all_company" (onSelect)="onStatusSelect($event)" (onSelectAll)="onStatusAll($event)"
+              (onDeSelect)="onStatusDeSelect($event)" (onDeSelectAll)="onStatusDeSelectAll($event)">
+            </ng-multiselect-dropdown>
+
+        </div>
+
+        <div class="col-sm-4"  >
+
+            <ng-multiselect-dropdown [placeholder]="'Year'" [settings]="dropdownSettings" [data]="all_year"
+              [(ngModel)]="selected_all_year" (onSelect)="onStatusSelect($event)" (onSelectAll)="onStatusAll($event)"
+              (onDeSelect)="onStatusDeSelect($event)" (onDeSelectAll)="onStatusDeSelectAll($event)">
+            </ng-multiselect-dropdown>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="content">
+    <div class="container">
+        <!-- end row -->
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Personal-Information -->
+                <div class="styling  graph mt-3" id="piechart">
+                </div>
+              
+                <div class="card-box">
+                  
+                   
+                    <!-- <h4 class="header-title mt-0">Personal Information</h4> -->
+                    <!-- <div class="panel-body">
+                         <p class="text-muted font-13">Hye, I’m userName residing in this beautiful world. I am
+                            amazing coder.</p>
+                        <hr> -->
+                        <!-- <div class="text-left">
+                            <p class="text-muted font-13"><strong>Full Name : </strong> <span class="m-l-15">
+                                    userName</span></p>
+                            <p class="text-muted font-13"><strong>Mobile : </strong><span class="m-l-15">
+                                    phoneNumber</span></p>
+                            <p class="text-muted font-13"><strong>Email : </strong> <span class="m-l-15">email</span>
+                            </p>
+                            <p class="text-muted font-13"><strong>Full Name : </strong> <span class="m-l-15">
+                                    userName</span></p>
+                            <p class="text-muted font-13"><strong>Mobile : </strong><span class="m-l-15">
+                                    phoneNumber</span></p>
+                            <p class="text-muted font-13"><strong>Email : </strong> <span class="m-l-15">email</span>
+                            </p>
+                            <p class="text-muted font-13"><strong>Most Comfortable Coding Language : </strong> <span
+                                    class="m-l-5"><span class="flag-icon flag-icon-us m-r-5 m-t-0" title="us"></span>
+                                    <span>most_comfortable_coding_language</span> </span><span class="m-l-5"><span
+                                        class="flag-icon flag-icon-de m-r-5" title="de"></span> </span><span
+                                    class="m-l-5"><span class="flag-icon flag-icon-es m-r-5" title="es"></span>
+                                </span><span class="m-l-5"><span class="flag-icon flag-icon-fr m-r-5" title="fr"></span>
+                                </span>
+                            </p>
+                        </div>
+                        <ul class="social-links list-inline mt-4 mb-0">
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip"
+                                    class="tooltips" href="" data-original-title="Facebook"><i
+                                        class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip"
+                                    class="tooltips" href="" data-original-title="Twitter"><i
+                                        class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip"
+                                    class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+
+
+            </div>
+            <div class="col-xl-8">
+                <div class="row">
+
+                </div>
+                <!-- end row -->
+
+                <div *ngFor="let item of all_posts | paginate: { id: 'foo',
+                itemsPerPage: pageSize,
+                currentPage: p,
+                totalItems: total }" class="card mt-2">
+                    <zak-modal id={{item._id}} >
+
+                              <div class="row">
+                                  <div class="taggedProblems" *ngIf= "item.problems.length>0">
+                                                <div class="" *ngFor="let problems of item.problems; let i = index">
+                                                    <a href="{{problems.problem_view_link}}" target ='_blank' class =  "btn btn-outline-warning"> {{problems.problem_name}}</a>
+                                              </div>
+                                  </div>
+                              </div>
+
+                    <div class="ql-container ql-snow" style="border-width: 0;">
+                        <div class="ql-editor"  [innerHTML]="item.content">
+                        </div>
+                      </div>
+
+                    </zak-modal>
+                    <div class="card-header">
+                      <span class="float-left"><img src="{{item.userId.google.pic}}" alt="Avatar"> {{item.userId.google.name}}   ( {{item.company}} )
+                       </span>
+                      <span class="float-right" style="margin-top:0.6rem;">{{item.date.substring(0,10)}}</span>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title"> {{item.title}}</h5>
+                      <!-- <p class="card-text">{{item.userId.google.name}}</div>p> -->
+                      <a href="javascript:void(0)" (click)="modalService.open(item._id)" class="btn btn-outline-primary">View Article</a>
+                    </div>
+                  </div>
+                <div class="pagination pagination-sm m-0 float-right">
+                    <pagination-controls  id="foo" (pageChange)="onChange($event)"></pagination-controls>
+                </div>
+            </div>
+
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- container -->
+</div>
